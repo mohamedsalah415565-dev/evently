@@ -1,0 +1,24 @@
+flutter_native_splash:
+ 
+  color: "#F4F7FF"  
+  color_dark: "#000F30"
+  image: assets/images/Evently_splash_logo.png
+  image_dark: assets/images/dark_splash_logo.png
+  branding:      assets/images/branding.png
+  branding_dark: assets/images/branding_dark.png
+  branding_bottom_padding: 24          
+ 
+          
+ 
+  android_12:
+
+  
+   color: "#F4F7FF"  
+   color_dark: "#000F30"
+   image: assets/images/Evently_splash_android12_logo.png
+   image_dark: assets/images/dark_splash_android12_logo.png
+   branding:      assets/images/branding.png
+   branding_dark: assets/images/branding_dark.png
+   branding_bottom_padding: 24          
+ 
+   
