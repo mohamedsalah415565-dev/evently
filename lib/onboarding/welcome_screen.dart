@@ -27,14 +27,14 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
         child: Padding(
           padding: EdgeInsets.symmetric(horizontal: 16),
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               /// Header Image
-              Image.asset('assets/images/headerlight.png'),
+              Center(child: Image.asset('assets/images/headerlight.png')),
 
               /// Welcome Image
               Padding(
-                padding: EdgeInsets.only(top: 24),
+                padding: EdgeInsets.symmetric(vertical: 24),
                 child: Image.asset(
                   'assets/images/welocome.png',
                   height: 343,
@@ -153,26 +153,31 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
               ),
 
               /// Get Started Button
-              Padding(
-                padding: const EdgeInsets.only(top: 24),
-                child: ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    padding: const EdgeInsets.symmetric(vertical: 9),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(16),
+              Center(
+                child: Padding(
+                  padding: const EdgeInsets.only(top: 24),
+                  child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      padding: EdgeInsets.symmetric(
+                        vertical: 9,
+                        horizontal: 114,
+                      ),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(16),
+                      ),
+                      foregroundColor: AppTheme.white,
+                      backgroundColor: AppTheme.primary,
                     ),
-                    foregroundColor: AppTheme.white,
-                    backgroundColor: AppTheme.primary,
-                  ),
-                  onPressed: () {
-                    Navigator.of(
-                      context,
-                    ).pushReplacementNamed(Onboarding.routeName);
-                  },
-                  child: Text(
-                    'Get Started',
-                    style: textTheme.titleLarge!.copyWith(
-                      color: AppTheme.white,
+                    onPressed: () {
+                      Navigator.of(
+                        context,
+                      ).pushReplacementNamed(Onboarding.routeName);
+                    },
+                    child: Text(
+                      'Get Started',
+                      style: textTheme.titleLarge!.copyWith(
+                        color: AppTheme.white,
+                      ),
                     ),
                   ),
                 ),
