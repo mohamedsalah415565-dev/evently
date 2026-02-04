@@ -152,7 +152,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                 ],
               ),
 
-              /// Get Started Button
+              /// Let's Started Button
               Center(
                 child: Padding(
                   padding: const EdgeInsets.only(top: 24),
@@ -160,7 +160,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                     style: ElevatedButton.styleFrom(
                       padding: EdgeInsets.symmetric(
                         vertical: 9,
-                        horizontal: 114,
+                        horizontal: 110,
                       ),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(16),
@@ -174,7 +174,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                       ).pushReplacementNamed(Onboarding.routeName);
                     },
                     child: Text(
-                      'Get Started',
+                      "Let's Started",
                       style: textTheme.titleLarge!.copyWith(
                         color: AppTheme.white,
                       ),
