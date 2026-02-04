@@ -1,6 +1,8 @@
 import 'package:evently_app/app_theme.dart';
 import 'package:evently_app/onboarding/onboarding_model.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import '../home_screen/home.dart'; // Make sure this import matches your project structure
 
 class Onboarding extends StatefulWidget {
   static const String routeName = '/onboarding';
@@ -48,11 +50,11 @@ class _OnboardingState extends State<Onboarding> {
                   Image.asset('assets/images/headerlight.png', height: 40),
                   currentIndex != onboardingContents.length - 1
                       ? TextButton(
-                          onPressed: () {
-                            _controller.animateToPage(
-                              onboardingContents.length - 1,
-                              duration: const Duration(milliseconds: 300),
-                              curve: Curves.easeInOut,
+                          onPressed: () async {
+                            await completeOnboarding();
+                            Navigator.pushReplacementNamed(
+                              context,
+                              Home.routeName,
                             );
                           },
                           child: Text(
@@ -84,30 +86,36 @@ class _OnboardingState extends State<Onboarding> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         /// IMAGE
-                        Image.asset(
-                          item.imageIntro,
-                          height: 343,
-                          width: 343,
-                          fit: BoxFit.contain,
+                        Center(
+                          child: Image.asset(
+                            item.imageIntro,
+                            height: 343,
+                            width: 343,
+                            fit: BoxFit.contain,
+                          ),
                         ),
 
                         const SizedBox(height: 16),
 
                         /// DOTS (BETWEEN IMAGE & TEXT)
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: List.generate(
-                            onboardingContents.length,
-                            (dotIndex) => AnimatedContainer(
-                              duration: const Duration(milliseconds: 300),
-                              margin: const EdgeInsets.symmetric(horizontal: 4),
-                              width: currentIndex == dotIndex ? 22 : 10,
-                              height: 10,
-                              decoration: BoxDecoration(
-                                color: currentIndex == dotIndex
-                                    ? AppTheme.primary
-                                    : AppTheme.gray,
-                                borderRadius: BorderRadius.circular(25),
+                        Center(
+                          child: Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: List.generate(
+                              onboardingContents.length,
+                              (dotIndex) => AnimatedContainer(
+                                duration: const Duration(milliseconds: 300),
+                                margin: const EdgeInsets.symmetric(
+                                  horizontal: 4,
+                                ),
+                                width: currentIndex == dotIndex ? 22 : 10,
+                                height: 10,
+                                decoration: BoxDecoration(
+                                  color: currentIndex == dotIndex
+                                      ? AppTheme.primary
+                                      : AppTheme.gray,
+                                  borderRadius: BorderRadius.circular(25),
+                                ),
                               ),
                             ),
                           ),
@@ -140,7 +148,7 @@ class _OnboardingState extends State<Onboarding> {
 
             /// ---------------- BUTTON ----------------
             Padding(
-              padding: const EdgeInsets.only(bottom: 24),
+              padding: const EdgeInsets.only(bottom: 15),
               child: ElevatedButton(
                 style: ElevatedButton.styleFrom(
                   padding: const EdgeInsets.symmetric(
@@ -152,9 +160,10 @@ class _OnboardingState extends State<Onboarding> {
                   ),
                   backgroundColor: AppTheme.primary,
                 ),
-                onPressed: () {
+                onPressed: () async {
                   if (currentIndex == onboardingContents.length - 1) {
-                    Navigator.pushReplacementNamed(context, '/home');
+                    await completeOnboarding();
+                    Navigator.pushReplacementNamed(context, Home.routeName);
                   } else {
                     _controller.nextPage(
                       duration: const Duration(milliseconds: 300),
@@ -174,5 +183,11 @@ class _OnboardingState extends State<Onboarding> {
         ),
       ),
     );
+  }
+
+  /// Save onboarding completion
+  Future<void> completeOnboarding() async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setBool('onboarding_completed', true);
   }
 }

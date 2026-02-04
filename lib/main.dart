@@ -1,27 +1,36 @@
 import 'package:evently_app/app_theme.dart';
+import 'package:evently_app/home_screen/home.dart';
 import 'package:evently_app/onboarding/onboarding.dart';
 import 'package:evently_app/onboarding/welcome_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-void main() {
-  runApp(Evently());
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  final prefs = await SharedPreferences.getInstance();
+  final seenOnboarding = prefs.getBool('onboarding_completed') ?? false;
+
+  runApp(Evently(seenOnboarding: seenOnboarding));
 }
 
 class Evently extends StatelessWidget {
-  const Evently({super.key});
+  final bool seenOnboarding;
+  const Evently({super.key, required this.seenOnboarding});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      routes: {
-        Onboarding.routeName: (_) => Onboarding(),
-        WelcomeScreen.routeName: (_) => WelcomeScreen(),
-      },
-      initialRoute: WelcomeScreen.routeName,
       theme: AppTheme.lightTheme,
       darkTheme: AppTheme.darkTheme,
       themeMode: ThemeMode.light,
+      initialRoute: seenOnboarding ? Home.routeName : WelcomeScreen.routeName,
+      routes: {
+        Home.routeName: (_) => const Home(),
+        Onboarding.routeName: (_) => const Onboarding(),
+        WelcomeScreen.routeName: (_) => const WelcomeScreen(),
+      },
     );
   }
 }
