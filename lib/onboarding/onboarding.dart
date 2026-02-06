@@ -50,12 +50,12 @@ class _OnboardingState extends State<Onboarding> {
                   Image.asset('assets/images/headerlight.png', height: 40),
                   currentIndex != onboardingContents.length - 1
                       ? TextButton(
-                          onPressed: () async {
-                            await completeOnboarding();
-                            Navigator.pushReplacementNamed(
+                          onPressed: () {
+                            completeOnboarding();
+                            if (!mounted) return;
+                            Navigator.of(
                               context,
-                              Home.routeName,
-                            );
+                            ).pushReplacementNamed(Home.routeName);
                           },
                           child: Text(
                             'Skip',
@@ -160,9 +160,10 @@ class _OnboardingState extends State<Onboarding> {
                   ),
                   backgroundColor: AppTheme.primary,
                 ),
-                onPressed: () async {
+                onPressed: () {
                   if (currentIndex == onboardingContents.length - 1) {
-                    await completeOnboarding();
+                    completeOnboarding();
+                    if (!mounted) return;
                     Navigator.pushReplacementNamed(context, Home.routeName);
                   } else {
                     _controller.nextPage(

@@ -31,5 +31,11 @@ class AppTheme {
         color: gray,
       ),
     ),
+
+    bottomNavigationBarTheme: BottomNavigationBarThemeData(
+      backgroundColor: white,
+      selectedItemColor: primary,
+      unselectedItemColor: gray,
+    ),
   );
 }
