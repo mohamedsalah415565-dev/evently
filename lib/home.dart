@@ -43,6 +43,11 @@ class _HomeState extends State<Home> {
           ),
         ],
       ),
+
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {},
+        child: Icon(Icons.add, size: 28),
+      ),
     );
   }
 }

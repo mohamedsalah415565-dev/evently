@@ -10,11 +10,11 @@ class AppTheme {
   static const Color gray = Color(0xff686868);
   static const Color grayDark = Color(0xff000F30);
 
-  static ThemeData lightTheme = ThemeData();
-  static ThemeData darkTheme = ThemeData(
+  static ThemeData darkTheme = ThemeData();
+  static ThemeData lightTheme = ThemeData(
     scaffoldBackgroundColor: background,
 
-    textTheme: TextTheme(
+    textTheme: const TextTheme(
       headlineMedium: TextStyle(
         fontSize: 18,
         fontWeight: FontWeight.bold,
@@ -32,10 +32,16 @@ class AppTheme {
       ),
     ),
 
-    bottomNavigationBarTheme: BottomNavigationBarThemeData(
+    bottomNavigationBarTheme: const BottomNavigationBarThemeData(
       backgroundColor: white,
       selectedItemColor: primary,
       unselectedItemColor: gray,
+    ),
+
+    floatingActionButtonTheme: const FloatingActionButtonThemeData(
+      backgroundColor: primary,
+      foregroundColor: white,
+      shape: CircleBorder(),
     ),
   );
 }

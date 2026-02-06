@@ -1,5 +1,5 @@
 import 'package:evently_app/app_theme.dart';
-import 'package:evently_app/home_screen/home.dart';
+import 'package:evently_app/home.dart';
 import 'package:evently_app/onboarding/onboarding.dart';
 import 'package:evently_app/onboarding/welcome_screen.dart';
 import 'package:flutter/material.dart';
@@ -27,9 +27,9 @@ class Evently extends StatelessWidget {
       themeMode: ThemeMode.light,
       initialRoute: seenOnboarding ? Home.routeName : WelcomeScreen.routeName,
       routes: {
-        Home.routeName: (_) => const Home(),
-        Onboarding.routeName: (_) => const Onboarding(),
-        WelcomeScreen.routeName: (_) => const WelcomeScreen(),
+        Home.routeName: (_) => Home(),
+        Onboarding.routeName: (_) => Onboarding(),
+        WelcomeScreen.routeName: (_) => WelcomeScreen(),
       },
     );
   }

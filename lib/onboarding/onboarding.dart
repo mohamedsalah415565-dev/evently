@@ -2,7 +2,7 @@ import 'package:evently_app/app_theme.dart';
 import 'package:evently_app/onboarding/onboarding_model.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import '../home_screen/home.dart'; // Make sure this import matches your project structure
+import '../home.dart'; // Make sure this import matches your project structure
 
 class Onboarding extends StatefulWidget {
   static const String routeName = '/onboarding';
