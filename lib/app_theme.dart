@@ -13,8 +13,9 @@ class AppTheme {
   static ThemeData darkTheme = ThemeData();
   static ThemeData lightTheme = ThemeData(
     scaffoldBackgroundColor: background,
+    primaryColor: primary,
 
-    textTheme: const TextTheme(
+    textTheme:  TextTheme(
       headlineMedium: TextStyle(
         fontSize: 18,
         fontWeight: FontWeight.bold,
@@ -22,7 +23,7 @@ class AppTheme {
       ),
       titleLarge: TextStyle(
         fontSize: 20,
-        fontWeight: FontWeight.bold,
+        fontWeight: FontWeight.w500,
         color: black,
       ),
       titleMedium: TextStyle(
@@ -32,13 +33,13 @@ class AppTheme {
       ),
     ),
 
-    bottomNavigationBarTheme: const BottomNavigationBarThemeData(
+    bottomNavigationBarTheme:  BottomNavigationBarThemeData(
       backgroundColor: white,
       selectedItemColor: primary,
       unselectedItemColor: gray,
     ),
 
-    floatingActionButtonTheme: const FloatingActionButtonThemeData(
+    floatingActionButtonTheme:  FloatingActionButtonThemeData(
       backgroundColor: primary,
       foregroundColor: white,
       shape: CircleBorder(),
