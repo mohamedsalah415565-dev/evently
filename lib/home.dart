@@ -18,7 +18,7 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: tabs[currentIndex],
+      body: SafeArea(child: tabs[currentIndex]),
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: currentIndex,
         onTap: (index) {

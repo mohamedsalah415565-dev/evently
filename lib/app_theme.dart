@@ -9,13 +9,14 @@ class AppTheme {
   static const Color black = Color(0xff1C1C1C);
   static const Color gray = Color(0xff686868);
   static const Color grayDark = Color(0xff000F30);
+  static const Color offWhite = Color(0xfff0f0f0);
 
   static ThemeData darkTheme = ThemeData();
   static ThemeData lightTheme = ThemeData(
     scaffoldBackgroundColor: background,
     primaryColor: primary,
 
-    textTheme:  TextTheme(
+    textTheme: TextTheme(
       headlineMedium: TextStyle(
         fontSize: 18,
         fontWeight: FontWeight.bold,
@@ -33,16 +34,34 @@ class AppTheme {
       ),
     ),
 
-    bottomNavigationBarTheme:  BottomNavigationBarThemeData(
+    bottomNavigationBarTheme: BottomNavigationBarThemeData(
       backgroundColor: white,
       selectedItemColor: primary,
       unselectedItemColor: gray,
     ),
 
-    floatingActionButtonTheme:  FloatingActionButtonThemeData(
+    floatingActionButtonTheme: FloatingActionButtonThemeData(
       backgroundColor: primary,
       foregroundColor: white,
       shape: CircleBorder(),
+    ),
+
+    inputDecorationTheme: InputDecorationTheme(
+      filled: true,
+      fillColor: white,
+      hintStyle: TextStyle(
+        fontSize: 14,
+        fontWeight: FontWeight.w300,
+        color: gray,
+      ),
+      enabledBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(16),
+        borderSide: BorderSide(color: offWhite),
+      ),
+      focusedBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(16),
+        borderSide: BorderSide(color: offWhite),
+      ),
     ),
   );
 }
