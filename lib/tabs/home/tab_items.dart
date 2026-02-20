@@ -1,12 +1,18 @@
 import 'package:evently_app/app_theme.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 
 class TabItems extends StatelessWidget {
   final bool isSelected;
+  final String label;
+  final IconData icon;
 
-  const TabItems({super.key, required this.isSelected});
-  
+  const TabItems({
+    super.key,
+    required this.label,
+    required this.icon,
+    required this.isSelected,
+  });
+
   @override
   Widget build(BuildContext context) {
     Color primaryColor = Theme.of(context).primaryColor;
@@ -18,16 +24,10 @@ class TabItems extends StatelessWidget {
       ),
       child: Row(
         children: [
-          SvgPicture.asset(
-            'assets/icons/sport.svg',
-            colorFilter: ColorFilter.mode(
-              isSelected ? AppTheme.background : primaryColor,
-              BlendMode.srcIn,
-            ),
-          ),
+          Icon(icon, color: isSelected ? AppTheme.white : AppTheme.black),
           SizedBox(width: 8),
           Text(
-            'Sport',
+            label,
             style: Theme.of(context).textTheme.titleMedium!.copyWith(
               color: isSelected ? AppTheme.white : AppTheme.black,
             ),

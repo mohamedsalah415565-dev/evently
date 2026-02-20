@@ -1,3 +1,5 @@
+import 'package:evently_app/models/category_model.dart';
+import 'package:evently_app/tabs/home/tab_items.dart';
 import 'package:flutter/material.dart';
 
 class HomeHeader extends StatelessWidget {
@@ -15,6 +17,33 @@ class HomeHeader extends StatelessWidget {
             Text('Welcome Back ✨', style: textTheme.titleSmall),
             SizedBox(height: 4),
             Text('UserName', style: textTheme.titleLarge),
+            Padding(
+              padding: EdgeInsets.symmetric(vertical: 24),
+              child: DefaultTabController(
+                length: CategoryModel.categories.length + 1,
+                child: TabBar(
+                  isScrollable: true,
+                  tabAlignment: TabAlignment.start,
+                  dividerColor: Colors.transparent,
+                  indicatorColor: Colors.transparent,
+                  labelPadding: EdgeInsets.only(left: 8),
+                  tabs: [
+                    TabItems(
+                      label: 'all',
+                      icon: Icons.category_outlined,
+                      isSelected: true,
+                    ),
+                    ...CategoryModel.categories.map(
+                      (category) => TabItems(
+                        label: category.name,
+                        icon: category.icon,
+                        isSelected: false,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
           ],
         ),
       ),
