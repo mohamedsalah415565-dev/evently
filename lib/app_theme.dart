@@ -63,5 +63,24 @@ class AppTheme {
         borderSide: BorderSide(color: offWhite),
       ),
     ),
+
+    switchTheme: SwitchThemeData(
+      trackOutlineColor: WidgetStatePropertyAll(Colors.transparent),
+      thumbColor: WidgetStatePropertyAll(white),
+    ),
+
+    listTileTheme: ListTileThemeData(
+      tileColor: white,
+      minTileHeight: 0,
+      contentPadding: EdgeInsets.symmetric(horizontal: 14, vertical: 16),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadiusGeometry.circular(16),
+      ),
+      titleTextStyle: TextStyle(
+        fontSize: 16,
+        fontWeight: FontWeight.w600,
+        color: black,
+      ),
+    ),
   );
 }
