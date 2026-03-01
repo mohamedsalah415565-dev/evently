@@ -8,6 +8,7 @@ class AppTheme {
   static const Color white = Color(0xffffffff);
   static const Color black = Color(0xff1C1C1C);
   static const Color gray = Color(0xff686868);
+  static const Color lightgray = Color(0xffB9B9B9);
   static const Color grayDark = Color(0xff000F30);
   static const Color offWhite = Color(0xfff0f0f0);
 
@@ -31,6 +32,32 @@ class AppTheme {
         fontSize: 16,
         fontWeight: FontWeight.w600,
         color: gray,
+      ),
+      headlineSmall: TextStyle(
+        fontSize: 24,
+        fontWeight: FontWeight.w600,
+        color: primary,
+      ),
+    ),
+
+    elevatedButtonTheme: ElevatedButtonThemeData(
+      style: ElevatedButton.styleFrom(
+        backgroundColor: primary,
+        foregroundColor: white,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+        textStyle: TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
+      ),
+    ),
+
+    textButtonTheme: TextButtonThemeData(
+      style: TextButton.styleFrom(
+        foregroundColor: primary,
+        textStyle: TextStyle(
+          fontSize: 14,
+          fontWeight: FontWeight.w600,
+          decoration: TextDecoration.underline,
+          fontStyle: FontStyle.italic,
+        ),
       ),
     ),
 
