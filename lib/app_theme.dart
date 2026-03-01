@@ -100,6 +100,16 @@ class AppTheme {
       ),
     ),
 
+    appBarTheme: AppBarThemeData(
+      backgroundColor: white,
+      centerTitle: true,
+      titleTextStyle: TextStyle(
+        fontSize: 18,
+        fontWeight: FontWeight.bold,
+        color: black,
+      ),
+    ),
+
     switchTheme: SwitchThemeData(
       trackOutlineColor: WidgetStatePropertyAll(Colors.transparent),
       thumbColor: WidgetStatePropertyAll(white),

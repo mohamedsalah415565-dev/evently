@@ -12,6 +12,7 @@ class DefaultTextFormField extends StatefulWidget {
     this.prefixIconImageName,
     this.suffixIconImageName,
     this.isPassword = false,
+    this.maxLines = 1,
   });
 
   final String hintText;
@@ -21,6 +22,7 @@ class DefaultTextFormField extends StatefulWidget {
   final String? prefixIconImageName;
   final String? suffixIconImageName;
   final bool isPassword;
+  final int maxLines;
 
   @override
   State<DefaultTextFormField> createState() => _DefaultTextFormFieldState();
@@ -34,9 +36,10 @@ class _DefaultTextFormFieldState extends State<DefaultTextFormField> {
       controller: widget.controller,
       onChanged: widget.onChanged,
       validator: widget.validator,
-      obscureText: widget.isPassword ? isobscure : !isobscure,
+      obscureText: widget.isPassword && isobscure,
       autovalidateMode: .onUserInteraction,
       onTapOutside: (_) => FocusManager.instance.primaryFocus?.unfocus(),
+      maxLines: widget.isPassword ? 1 : widget.maxLines,
       decoration: InputDecoration(
         hintText: widget.hintText,
         prefixIcon: widget.prefixIconImageName == null
