@@ -24,7 +24,7 @@ class TabItems extends StatelessWidget {
       ),
       child: Row(
         children: [
-          Icon(icon, color: isSelected ? AppTheme.white : AppTheme.black),
+          Icon(icon, color: isSelected ? AppTheme.white : AppTheme.primary),
           SizedBox(width: 8),
           Text(
             label,
