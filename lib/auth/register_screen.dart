@@ -1,3 +1,4 @@
+import 'package:evently_app/home.dart';
 import 'package:evently_app/widgets/default_eleveted_button.dart';
 import 'package:evently_app/widgets/default_text_form_field.dart';
 import 'package:flutter/material.dart';
@@ -89,5 +90,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
     );
   }
 
-  void register() {}
+  void register() {
+    Navigator.of(context).pushReplacementNamed(Home.routeName);
+  }
 }
