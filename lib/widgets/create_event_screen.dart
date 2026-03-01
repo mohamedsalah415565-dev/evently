@@ -16,6 +16,8 @@ class CreateEventScreen extends StatefulWidget {
 }
 
 class _CreateEventScreenState extends State<CreateEventScreen> {
+  int currentIndex = 0;
+  CategoryModel selectedCategory = CategoryModel.categories.first;
   TextEditingController titleController = TextEditingController();
   TextEditingController descriptionController = TextEditingController();
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
@@ -51,7 +53,12 @@ class _CreateEventScreenState extends State<CreateEventScreen> {
                       padding: const EdgeInsets.symmetric(horizontal: 16),
                       child: ClipRRect(
                         borderRadius: BorderRadiusGeometry.circular(16),
-                        child: Image.asset('assets/images/bookclub.png'),
+                        child: Image.asset(
+                          'assets/images/${selectedCategory.imageName}.png',
+                          height: MediaQuery.sizeOf(context).height * 0.22,
+                          width: double.infinity,
+                          fit: .fill,
+                        ),
                       ),
                     ),
 
@@ -65,7 +72,11 @@ class _CreateEventScreenState extends State<CreateEventScreen> {
                                 (category) => TabItems(
                                   label: category.name,
                                   icon: category.icon,
-                                  isSelected: false,
+                                  isSelected:
+                                      currentIndex ==
+                                      CategoryModel.categories.indexOf(
+                                        category,
+                                      ),
                                 ),
                               )
                               .toList(),
@@ -75,6 +86,12 @@ class _CreateEventScreenState extends State<CreateEventScreen> {
                           labelPadding: .only(left: 8),
                           padding: .only(left: 16),
                           tabAlignment: .start,
+                          onTap: (index) {
+                            currentIndex = index;
+                            selectedCategory =
+                                CategoryModel.categories[currentIndex];
+                            setState(() {});
+                          },
                         ),
                       ),
                     ),
