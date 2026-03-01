@@ -2,9 +2,14 @@ import 'package:evently_app/models/category_model.dart';
 import 'package:evently_app/tabs/home/tab_items.dart';
 import 'package:flutter/material.dart';
 
-class HomeHeader extends StatelessWidget {
+class HomeHeader extends StatefulWidget {
   const HomeHeader({super.key});
+  @override
+  State<HomeHeader> createState() => _HomeHeaderState();
+}
 
+class _HomeHeaderState extends State<HomeHeader> {
+  int currentIndex = 0;
   @override
   Widget build(BuildContext context) {
     TextTheme textTheme = Theme.of(context).textTheme;
@@ -30,16 +35,24 @@ class HomeHeader extends StatelessWidget {
                   TabItems(
                     label: 'all',
                     icon: Icons.category_outlined,
-                    isSelected: true,
+                    isSelected: currentIndex == 0,
                   ),
                   ...CategoryModel.categories.map(
                     (category) => TabItems(
                       label: category.name,
                       icon: category.icon,
-                      isSelected: false,
+                      isSelected:
+                          currentIndex ==
+                          CategoryModel.categories.indexOf(category) + 1,
                     ),
                   ),
                 ],
+
+                onTap: (index) {
+                  if (currentIndex == index) return;
+                  currentIndex = index;
+                  setState(() {});
+                },
               ),
             ),
           ),

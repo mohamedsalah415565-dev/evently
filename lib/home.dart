@@ -1,6 +1,7 @@
 import 'package:evently_app/tabs/favorate/favorate_tab.dart';
 import 'package:evently_app/tabs/home/home_tab.dart';
 import 'package:evently_app/tabs/profile/profile_tab.dart';
+import 'package:evently_app/widgets/create_event_screen.dart';
 import 'package:evently_app/widgets/nav_bar_icon.dart';
 import 'package:flutter/material.dart';
 
@@ -22,6 +23,7 @@ class _HomeState extends State<Home> {
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: currentIndex,
         onTap: (index) {
+          if (currentIndex == index) return;
           currentIndex = index;
           setState(() {});
         },
@@ -45,7 +47,8 @@ class _HomeState extends State<Home> {
       ),
 
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: () =>
+            Navigator.of(context).pushNamed(CreateEventScreen.routeName),
         child: Icon(Icons.add, size: 28),
       ),
     );
