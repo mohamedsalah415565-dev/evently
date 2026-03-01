@@ -1,7 +1,8 @@
+import 'package:evently_app/app_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-class DefaultTextFormField extends StatelessWidget {
+class DefaultTextFormField extends StatefulWidget {
   const DefaultTextFormField({
     super.key,
     required this.hintText,
@@ -10,6 +11,7 @@ class DefaultTextFormField extends StatelessWidget {
     this.validator,
     this.prefixIconImageName,
     this.suffixIconImageName,
+    this.isPassword = false,
   });
 
   final String hintText;
@@ -18,23 +20,56 @@ class DefaultTextFormField extends StatelessWidget {
   final String? Function(String?)? validator;
   final String? prefixIconImageName;
   final String? suffixIconImageName;
+  final bool isPassword;
 
+  @override
+  State<DefaultTextFormField> createState() => _DefaultTextFormFieldState();
+}
+
+class _DefaultTextFormFieldState extends State<DefaultTextFormField> {
+  late bool isobscure = widget.isPassword;
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-      controller: controller,
-      onChanged: onChanged,
-      validator: validator,
+      controller: widget.controller,
+      onChanged: widget.onChanged,
+      validator: widget.validator,
+      obscureText: widget.isPassword ? isobscure : !isobscure,
+      autovalidateMode: .onUserInteraction,
+      onTapOutside: (_) => FocusManager.instance.primaryFocus?.unfocus(),
       decoration: InputDecoration(
-        hintText: hintText,
-        prefixIcon: prefixIconImageName == null
+        hintText: widget.hintText,
+        prefixIcon: widget.prefixIconImageName == null
             ? null
-            : SvgPicture.asset('assets/icons/$prefixIconImageName.svg'),
+            : Padding(
+                padding: EdgeInsets.all(12),
+                child: SvgPicture.asset(
+                  'assets/icons/${widget.prefixIconImageName}.svg',
+                ),
+              ),
         suffixIcon: Padding(
           padding: EdgeInsets.all(12),
-          child: suffixIconImageName == null
+          child: widget.isPassword
+              ? IconButton(
+                  onPressed: () {
+                    isobscure = !isobscure;
+                    setState(() {});
+                  },
+                  icon: Icon(
+                    isobscure
+                        ? Icons.visibility_outlined
+                        : Icons.visibility_off_outlined,
+                    color: AppTheme.lightgray,
+                  ),
+                )
+              : widget.suffixIconImageName == null
               ? null
-              : SvgPicture.asset('assets/icons/$suffixIconImageName.svg'),
+              : Padding(
+                  padding: const EdgeInsets.all(12),
+                  child: SvgPicture.asset(
+                    'assets/icons/${widget.suffixIconImageName}.svg',
+                  ),
+                ),
         ),
       ),
     );
