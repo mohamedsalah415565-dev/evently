@@ -11,6 +11,7 @@ class AppTheme {
   static const Color lightgray = Color(0xffB9B9B9);
   static const Color grayDark = Color(0xff000F30);
   static const Color offWhite = Color(0xfff0f0f0);
+  static const Color red = Color(0xffff3232);
 
   static ThemeData darkTheme = ThemeData();
   static ThemeData lightTheme = ThemeData(
@@ -88,6 +89,14 @@ class AppTheme {
       focusedBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(16),
         borderSide: BorderSide(color: offWhite),
+      ),
+      errorBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(16),
+        borderSide: BorderSide(color: red),
+      ),
+      focusedErrorBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(16),
+        borderSide: BorderSide(color: red),
       ),
     ),
 

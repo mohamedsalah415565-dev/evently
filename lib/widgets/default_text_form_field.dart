@@ -35,6 +35,8 @@ class _DefaultTextFormFieldState extends State<DefaultTextFormField> {
       onChanged: widget.onChanged,
       validator: widget.validator,
       obscureText: widget.isPassword ? isobscure : !isobscure,
+      autovalidateMode: .onUserInteraction,
+      onTapOutside: (_) => FocusManager.instance.primaryFocus?.unfocus(),
       decoration: InputDecoration(
         hintText: widget.hintText,
         prefixIcon: widget.prefixIconImageName == null
