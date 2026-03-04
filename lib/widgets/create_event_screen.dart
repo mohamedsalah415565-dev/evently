@@ -1,4 +1,5 @@
 import 'package:evently_app/app_theme.dart';
+import 'package:evently_app/firebase_service.dart';
 import 'package:evently_app/models/category_model.dart';
 import 'package:evently_app/models/event_model.dart';
 import 'package:evently_app/tabs/home/tab_items.dart';
@@ -232,7 +233,9 @@ class _CreateEventScreenState extends State<CreateEventScreen> {
         dateTime: dateTime,
         category: selectedCategory,
       );
-      event.toJson();
+      FirebaseService.createEvent(event).then((_) {
+        Navigator.of(context).pop();
+      });
     }
   }
 }
