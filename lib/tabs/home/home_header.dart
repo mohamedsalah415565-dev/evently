@@ -14,7 +14,7 @@ class _HomeHeaderState extends State<HomeHeader> {
   Widget build(BuildContext context) {
     TextTheme textTheme = Theme.of(context).textTheme;
     return Padding(
-      padding: const EdgeInsets.only(left: 16),
+      padding: EdgeInsets.only(left: 16),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -51,6 +51,8 @@ class _HomeHeaderState extends State<HomeHeader> {
                 onTap: (index) {
                   if (currentIndex == index) return;
                   currentIndex = index;
+                  CategoryModel selectedCategory =
+                      CategoryModel.categories[index - 1];
                   setState(() {});
                 },
               ),
