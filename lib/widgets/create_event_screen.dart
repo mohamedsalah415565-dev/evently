@@ -234,6 +234,7 @@ class _CreateEventScreenState extends State<CreateEventScreen> {
         category: selectedCategory,
       );
       FirebaseService.createEvent(event).then((_) {
+        if (!mounted) return;
         Navigator.of(context).pop();
       });
     }
