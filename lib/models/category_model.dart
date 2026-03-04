@@ -26,17 +26,5 @@ class CategoryModel {
       icon: Icons.cake_outlined,
       imageName: 'birthday',
     ),
-    CategoryModel(
-      id: '3',
-      name: 'birthday',
-      icon: Icons.cake_outlined,
-      imageName: 'birthday',
-    ),
-    CategoryModel(
-      id: '4',
-      name: 'birthday',
-      icon: Icons.cake_outlined,
-      imageName: 'birthday',
-    ),
   ];
 }
