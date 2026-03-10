@@ -30,7 +30,9 @@ class Evently extends StatelessWidget {
       theme: AppTheme.lightTheme,
       darkTheme: AppTheme.darkTheme,
       themeMode: ThemeMode.light,
-      initialRoute: seenOnboarding ? Home.routeName : WelcomeScreen.routeName,
+      initialRoute: seenOnboarding
+          ? RegisterScreen.routeName
+          : WelcomeScreen.routeName,
       routes: {
         Home.routeName: (_) => Home(),
         Onboarding.routeName: (_) => Onboarding(),

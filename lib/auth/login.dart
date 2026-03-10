@@ -1,4 +1,5 @@
 import 'package:evently_app/auth/register_screen.dart';
+import 'package:evently_app/firebase_service.dart';
 import 'package:evently_app/home.dart';
 import 'package:evently_app/widgets/default_eleveted_button.dart';
 import 'package:evently_app/widgets/default_text_form_field.dart';
@@ -89,9 +90,35 @@ class _LoginScreenState extends State<LoginScreen> {
     );
   }
 
-  void login() {
-    if (formKey.currentState!.validate()) {
+  void login() async {
+    if (!formKey.currentState!.validate()) return;
+
+    final email = emailController.text.trim();
+    final password = passwordController.text.trim();
+
+    try {
+      // Call your Firebase login
+      final user = await FirebaseService.login(
+        email: email,
+        password: password,
+      );
+
+      // Only use context if widget is still mounted
+      if (!mounted) return;
+
+      // Navigate to home if login succeeds
       Navigator.of(context).pushReplacementNamed(Home.routeName);
+
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(SnackBar(content: Text('Welcome back, ${user.name}!')));
+    } catch (e) {
+      if (!mounted) return;
+
+      // Show error if login fails
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(SnackBar(content: Text('Login failed: $e')));
     }
   }
 }

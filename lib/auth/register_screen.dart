@@ -1,4 +1,5 @@
 import 'package:evently_app/auth/login.dart';
+import 'package:evently_app/firebase_service.dart';
 import 'package:evently_app/home.dart';
 import 'package:evently_app/widgets/default_eleveted_button.dart';
 import 'package:evently_app/widgets/default_text_form_field.dart';
@@ -116,9 +117,31 @@ class _RegisterScreenState extends State<RegisterScreen> {
     );
   }
 
-  void register() {
-    if (formKey.currentState!.validate()) {
+  void register() async {
+    if (!formKey.currentState!.validate()) return;
+
+    final name = nameController.text.trim();
+    final email = emailController.text.trim();
+    final password = passwordController.text.trim();
+
+    try {
+      // Call Firebase register
+      final user = await FirebaseService.register(name, email, password);
+
+      // Only use context if widget is still mounted
+      if (!mounted) return;
+
       Navigator.of(context).pushReplacementNamed(Home.routeName);
+
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(SnackBar(content: Text('Welcome, ${user.name}!')));
+    } catch (e) {
+      if (!mounted) return;
+
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(SnackBar(content: Text('Registration failed: $e')));
     }
   }
 }
