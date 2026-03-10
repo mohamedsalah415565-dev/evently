@@ -25,4 +25,13 @@ class FirebaseService {
         .get();
     return querySnapshot.docs.map((doc) => doc.data()).toList();
   }
+
+  /// Stream events in real time
+  static Stream<List<EventModel>> streamEvents() {
+    final eventsCollection = getEventsCollection();
+    return eventsCollection
+        .orderBy('timestamp')
+        .snapshots()
+        .map((snapshot) => snapshot.docs.map((doc) => doc.data()).toList());
+  }
 }

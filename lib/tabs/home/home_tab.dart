@@ -12,29 +12,39 @@ class HomeTab extends StatefulWidget {
 }
 
 class _HomeTabState extends State<HomeTab> {
-  List<EventModel> events = [];
   @override
   Widget build(BuildContext context) {
-    if (events.isEmpty) {
-      getEvent();
-    }
     return Column(
       children: [
-        HomeHeader(),
+        const HomeHeader(),
         Expanded(
-          child: ListView.separated(
-            padding: EdgeInsets.symmetric(horizontal: 16),
-            itemBuilder: (_, index) => EventItem(events[index]),
-            itemCount: events.length,
-            separatorBuilder: (_, _) => SizedBox(height: 10),
+          child: StreamBuilder<List<EventModel>>(
+            stream: FirebaseService.streamEvents(),
+            builder: (context, snapshot) {
+              if (snapshot.connectionState == ConnectionState.waiting) {
+                return const Center(child: CircularProgressIndicator());
+              }
+
+              if (snapshot.hasError) {
+                return const Center(child: Text("Something went wrong"));
+              }
+
+              final events = snapshot.data ?? [];
+
+              if (events.isEmpty) {
+                return const Center(child: Text("No Events Yet"));
+              }
+
+              return ListView.separated(
+                padding: const EdgeInsets.symmetric(horizontal: 16),
+                itemCount: events.length,
+                itemBuilder: (_, index) => EventItem(events[index]),
+                separatorBuilder: (_, __) => const SizedBox(height: 10),
+              );
+            },
           ),
         ),
       ],
     );
-  }
-
-  Future<void> getEvent() async {
-    events = await FirebaseService.getEvents();
-    setState(() {});
   }
 }
